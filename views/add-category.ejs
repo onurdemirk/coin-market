@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Category - CoinMarket</title>
+  <style>
+    /* Reset & Base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f5f5f5;
+      color: #111;
+      padding-bottom: 4rem;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header & Navbar */
+    .header { text-align: center; padding: 2rem 1rem; }
+    .logo { font-size: 2rem; font-weight: bold; color: #1e88e5; }
+    .navbar { display: flex; justify-content: center; gap: 2rem; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+    .navbar__item { padding: 1rem 0; font-size: 1rem; position: relative; }
+    .navbar__item:hover::after,
+    .navbar__item--active::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: #1e88e5; }
+
+    /* Form Styles */
+    .container { max-width: 600px; margin: 2rem auto; padding: 0 1rem; }
+    .form-card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      padding: 2rem;
+    }
+    .form-group { margin-bottom: 1.5rem; }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #333;
+      font-weight: 500;
+    }
+    input[type="text"], input[type="url"], textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    textarea { resize: vertical; min-height: 100px; }
+    .recommendation {
+      font-size: 0.85rem;
+      color: #555;
+      margin-top: -1rem;
+      margin-bottom: 1rem;
+      padding-left: 0.25rem;
+    }
+    .recommendation a { color: #1e88e5; }
+    .btn {
+      background: #1e88e5;
+      color: #fff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: #1565c0;
+    }
+
+    /* Footer */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
+      padding: 1rem 0;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    .footer a { color: #1e88e5; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">CoinMarket</div>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="/" class="navbar__item">Home</a>
+    <a href="/coins" class="navbar__item">Coins</a>
+    <a href="/categories/new" class="navbar__item navbar__item--active">Add Category</a>
+    <a href="/coins/new" class="navbar__item">Add Coin</a>
+  </nav>
+
+  <!-- Main Form -->
+  <main class="container">
+    <div class="form-card">
+      <h1 style="margin-bottom:1.5rem; color:#333;">Add New Category</h1>
+      <form action="/categories" method="post">
+        <div class="form-group">
+          <label for="categoryName">Category Name</label>
+          <input type="text" id="categoryName" name="categoryName" required>
+        </div>
+        <div class="form-group">
+          <label for="categoryImage">Image URL</label>
+          <input type="url" id="categoryImage" name="categoryImage" required>
+          <div class="recommendation">
+            You can find free images at <a href="https://unsplash.com" target="_blank">Unsplash</a>, <a href="https://www.pexels.com" target="_blank">Pexels</a>, or <a href="https://pixabay.com" target="_blank">Pixabay</a>.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="categoryDesc">Description</label>
+          <textarea id="categoryDesc" name="categoryDesc" required></textarea>
+        </div>
+        <button type="submit" class="btn">Save Category</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    This project is a part of The Odin Project. <a href="https://github.com/onurdemirk/mini-message-board" target="_blank" rel="noopener">Check out the project repository here</a>.<br>
+    © onr, code is poety 2025
+  </footer>
+</body>
+</html>
