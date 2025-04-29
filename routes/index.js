@@ -71,6 +71,28 @@ router.get("/categories/:id/coins", async (req, res) => {
     }
 })
 
+router.post("/categories/:id/delete", async(req, res) => {
+    const categoryId =  Number(req.params.id);
+
+    try {
+        await db.deleteCategory(categoryId)
+        res.redirect(`/`);
+    } catch(err) {
+        console.log(`Error: ${err}`)
+        res.status(500).send("server error")
+    }
+})
+
+router.post("/coins/:id/delete", async(req, res) => {
+    const coinId =  Number(req.params.id);
+    try {
+        const coin = await db.deleteCoin(coinId)
+        res.redirect(`/coins`);
+    } catch(err) {
+        console.log(`Error: ${err}`)
+        res.status(500).send("server error")
+    }
+})
 
 router.post("/categories", async(req, res) => {
     const categoryName = req.body.categoryName;
