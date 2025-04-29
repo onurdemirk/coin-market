@@ -31,6 +31,9 @@
     .card__img { width: 64px; height: 64px; object-fit: contain; margin-bottom: 0.5rem; }
     .card__title { font-size: 1.1rem; font-weight: 600; color: #333; }
 
+    /* Empty State */
+    .empty-state { text-align: center; color: #666; padding: 2rem 0; font-size: 1.1rem; }
+
     /* Footer */
     .footer {
       position: fixed;
@@ -64,19 +67,23 @@
   <!-- Main Content: Category Grid -->
   <main class="container">
     <section class="grid">
-      <% categories.forEach(category => { %>
-        <a href="/categories/<%= category.id %>/coins" class="card">
-          <img src="<%= category.image_url %>" alt="<%= category.name %>" class="card__img">
-          <div class="card__title"><%= category.name %></div>
-        </a>
-      <% }) %>
+      <% if (categories && categories.length) { %>
+        <% categories.forEach(category => { %>
+          <a href="/categories/<%= category.id %>/coins" class="card">
+            <img src="<%= category.image_url %>" alt="<%= category.name %>" class="card__img">
+            <div class="card__title"><%= category.name %></div>
+          </a>
+        <% }) %>
+      <% } else { %>
+        <div class="empty-state">There are no categories yet. Please add a new category.</div>
+      <% } %>
     </section>
   </main>
 
   <!-- Footer -->
   <footer class="footer">
     This project is a part of The Odin Project. <a href="https://github.com/onurdemirk/mini-message-board" target="_blank" rel="noopener">Check out the project repository here</a>.<br>
-    © onur, code is poety 2025
+    © onr, code is poety 2025
   </footer>
 </body>
 </html>
