@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Coins - CoinMarket</title>
+  <style>
+    /* Reset & Base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5; color: #111; padding-bottom: 4rem; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Header & Navbar */
+    .header { text-align: center; padding: 2rem 1rem; }
+    .logo { font-size: 2rem; font-weight: bold; color: #1e88e5; }
+    .navbar { display: flex; justify-content: center; gap: 2rem; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+    .navbar__item { padding: 1rem 0; font-size: 1rem; position: relative; }
+    .navbar__item:hover::after, .navbar__item--active::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: #1e88e5; }
+
+    /* Grid & Cards */
+    .container { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1.5rem; }
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 1rem; text-align: center; transition: transform 0.2s, box-shadow 0.2s; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .card__img { width: 64px; height: 64px; object-fit: contain; margin-bottom: 0.5rem; }
+    .card__title { font-size: 1rem; font-weight: 600; color: #333; margin-bottom: 0.25rem; }
+    .card__symbol { font-size: 0.9rem; color: #666; }
+
+    /* Empty State */
+    .empty-state { text-align: center; color: #666; padding: 2rem 0; font-size: 1.1rem; }
+
+    /* Footer */
+    .footer { position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; box-shadow: 0 -1px 4px rgba(0,0,0,0.1); padding: 1rem 0; text-align: center; font-size: 0.9rem; color: #666; }
+    .footer a { color: #1e88e5; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">CoinMarket</div>
+  </header>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="/" class="navbar__item">Home</a>
+    <a href="/coins" class="navbar__item navbar__item--active">Coins</a>
+    <a href="/categories/new" class="navbar__item">Add Category</a>
+    <a href="/coins/new" class="navbar__item">Add Coin</a>
+  </nav>
+
+  <!-- All Coins Grid -->
+  <main class="container">
+    <section class="grid">
+      <% if (coins && coins.length) { %>
+        <% coins.forEach(coin => { %>
+          <a href="/coins/<%= coin.id %>" class="card">
+            <% if (coin.logo_url) { %>
+              <img src="<%= coin.logo_url %>" alt="<%= coin.name %> logo" class="card__img">
+            <% } %>
+            <div class="card__title"><%= coin.name %></div>
+            <div class="card__symbol"><%= coin.symbol %></div>
+          </a>
+        <% }) %>
+      <% } else { %>
+        <div class="empty-state">No coins added yet.</div>
+      <% } %>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    This project is a part of The Odin Project. <a href="https://github.com/onurdemirk/mini-message-board" target="_blank" rel="noopener">Check out the project repository here</a>.<br>
+    © onr, code is poety 2025
+  </footer>
+</body>
+</html>
