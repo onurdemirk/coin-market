@@ -18,6 +18,22 @@ async function getAllCoins() {
   return rows;
 }
 
+async function deleteCategory(categoryId) {
+  await pool.query(
+    `DELETE FROM categories
+     WHERE id = $1`,
+    [categoryId]
+  );
+}
+
+async function deleteCoin(coinId) {
+  await pool.query(
+    `DELETE FROM coins
+     WHERE id = $1`,
+    [coinId]
+  );
+}
+
 async function getCoinsByCategory(categoryId) {
   const { rows } = await pool.query(
     `SELECT 
@@ -95,4 +111,6 @@ module.exports = {
   getAllCoins,
   getCoinDetails,
   getCategoriesByCoin,
+  deleteCategory,
+  deleteCoin
 };
